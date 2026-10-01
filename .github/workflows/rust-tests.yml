@@ -15,7 +15,8 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: 1.97.1
+          components: clippy, rustfmt
           override: true
           profile: minimal
       
@@ -50,7 +51,8 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: 1.97.1
+          components: clippy, rustfmt
           override: true
           profile: minimal
       
