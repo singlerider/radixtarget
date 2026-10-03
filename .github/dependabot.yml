@@ -1,7 +1,9 @@
 version: 2
 updates:
   - package-ecosystem: "cargo"
-    directory: "/"
+    directories:
+      - "/"
+      - "/benchmark"
     target-branch: "dev"
     schedule:
       interval: "weekly"
