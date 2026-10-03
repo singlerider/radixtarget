@@ -10,17 +10,11 @@ permissions:
   contents: read
 
 concurrency:
-  group: rust-tests-${{ github.ref }}
+  group: rust-tests-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  test:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
-      - run: cargo fmt --all -- --check
-      - run: cargo clippy --all-targets --all-features -- -D warnings
-      - run: cargo test --verbose --all-features
+  rust:
+    uses: blacklanternsecurity/CLA/.github/workflows/rust-tests.yml@883bfbc89464cadbeb10307b2b82891ba7853f56 # 2026-10-03
+    with:
+      cargo-args: --all-features --locked
