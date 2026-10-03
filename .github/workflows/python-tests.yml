@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: |
-          pipx install ruff
+          pipx install ruff==0.16.9
           ruff check
   test:
     needs: lint
